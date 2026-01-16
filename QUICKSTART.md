@@ -4,7 +4,7 @@ Welcome to StackerNoon, your Nostr-powered long-form content platform!
 
 ## 🎯 What is This?
 
-StackerNoon is a long-form content discovery platform that pulls articles from creators across the Nostr network. It's inspired by HackerNoon but powered by the Nostr protocol - meaning all content is cryptographically signed and decentralized.
+StackerNoon is a long-form content discovery platform featuring articles from Heather and Derek about Bitcoin and Nostr. It's inspired by HackerNoon but powered by the Nostr protocol - meaning all content is cryptographically signed and decentralized.
 
 ## 🚀 Getting Started
 
@@ -33,13 +33,13 @@ Each article shows:
 
 ### Step 4: Publish Your Own Article
 
-To publish an article:
+If you're Heather or Derek:
 
-1. Click the "Write Now" button in the header (or log in first)
+1. Click the "Write Now" button in the header
 2. Log in with your Nostr signer (Alby, nos2x, etc.)
 3. Use any Nostr client that supports Kind 23 (long-form content)
 4. Write your article in Markdown format
-5. Include tags using `#bitcoin`, `#ethereum`, etc.
+5. Include tags using `#bitcoin` or `#nostr`
 6. Publish to the Nostr network
 7. Your article will appear on StackerNoon automatically!
 

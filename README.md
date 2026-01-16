@@ -32,7 +32,7 @@ A Nostr-native long-form content platform inspired by HackerNoon. Browse and rea
 
 ### Routes
 
-- `/` - **Blog Home**: Browse all articles with category filtering
+- `/` - **Blog Home**: Browse articles with category filtering
 - `/article/:slug` - **Article View**: Read individual articles
 
 ### Key Files
@@ -45,7 +45,7 @@ src/
 │   ├── ArticleCard.tsx         # Individual article preview
 │   └── ArticleView.tsx         # Full article display
 ├── hooks/
-│   ├── useBlogArticles.ts      # Query long-form articles
+│   ├── useBlogArticles.ts      # Query long-form articles (Heather & Derek only)
 │   └── usePublishBlogArticle.ts # Publish articles
 └── pages/
     ├── Blog.tsx                # Blog home page
@@ -76,8 +76,8 @@ StackerNoon uses Kind 23 (NIP-23) events for long-form content:
 
 StackerNoon queries the Nostr network for:
 - **Kind 23 Events**: Long-form content articles
-- **Any Author**: Articles from all Nostr creators
-- **All Categories**: Filtered by #t tags
+- **Authorized Authors Only**: Content from Heather and Derek
+- **Bitcoin & Nostr Categories**: Filtered by #t tags
 
 Articles are sorted by published_at timestamp (newest first).
 

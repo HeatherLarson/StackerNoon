@@ -5,6 +5,12 @@ import type { NostrEvent } from '@nostrify/nostrify';
 // Kind 23: Long-form content (NIP-23)
 const LONG_FORM_KIND = 23;
 
+// Authorized publishers - only Heather and Derek
+export const AUTHORIZED_PUBLISHERS = [
+  '9fce3aea32b35637838fb45b75be32595742e16bb3e4742cc82bb3d50f9087e6', // Heather
+  '4f1ebb82e7c7b631e234b02b87f6fdf87cf2c46d8eed17f23ca3b89e3f86ff5f', // Derek (npub18ams6ewn5aj2n3wt2qawzglx9mr4nzksxhvrdc4gzrecw7n5tvjqctp424)
+];
+
 export interface BlogArticle extends NostrEvent {
   data: {
     slug: string;
@@ -59,6 +65,7 @@ export function useBlogArticles(category?: string) {
 
       const filter: Record<string, unknown> = {
         kinds: [LONG_FORM_KIND],
+        authors: AUTHORIZED_PUBLISHERS,
         limit: 50,
       };
 
@@ -92,6 +99,7 @@ export function useBlogArticle(slug: string) {
         [
           {
             kinds: [LONG_FORM_KIND],
+            authors: AUTHORIZED_PUBLISHERS,
             '#d': [slug],
             limit: 1,
           },

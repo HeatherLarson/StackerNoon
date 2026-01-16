@@ -41,11 +41,11 @@ StackerNoon uses Kind 23 for long-form content, as defined in NIP-23:
 ```
 
 ### Real Data from Nostr
-- **Source**: Kind 23 events from entire Nostr network
-- **Any Author**: Anyone can publish using their Nostr key
+- **Source**: Kind 23 events from Nostr network
+- **Authors**: Only Heather and Derek
 - **Decentralized**: Content stored on Nostr relays worldwide
 - **Cryptographically Signed**: All articles verified with author's signature
-- **Open**: No gatekeeping, censorship-resistant platform
+- **Private**: Curated content from specific authors
 
 ## 🏗️ Architecture
 
@@ -241,11 +241,11 @@ All layouts optimized for touch and mouse input.
 - **Read** articles with rich markdown formatting
 - **Share** articles via URL
 
-### For Writers
-- **Publish** articles directly to Nostr
+### For Writers (Heather & Derek)
+- **Publish** articles directly to Nostr using Kind 23
 - **Control** your own content (no central authority)
 - **Reach** audience across relays
-- **Monetize** with lightning tips (future)
+- **Share** Bitcoin and Nostr knowledge
 
 ### For Communities
 - **Build** niche content platforms
@@ -331,17 +331,17 @@ Shakespeare makes it easy to:
 ## 💡 Philosophy
 
 **StackerNoon is about**:
-- ✨ Long-form content discovery
-- 🔓 Open publishing (no gatekeeping)
+- ✨ Long-form Bitcoin & Nostr content
+- 🔓 Curated publishing (Heather & Derek only)
 - 🛡️ Cryptographic verification
-- 🌍 Decentralized hosting
-- 👥 Creator-first design
-- 🚀 Nostr ecosystem growth
+- 🌍 Decentralized hosting on Nostr
+- 👥 High-quality content focus
+- 💪 Bitcoin maximalism
 
 **StackerNoon is NOT**:
 - ❌ A content moderation platform
 - ❌ Centralized social media
-- ❌ Requiring registration/login
+- ❌ For everyone to publish
 - ❌ Collecting user data
 - ❌ Ad-supported
 - ❌ Venture-backed

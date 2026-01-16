@@ -1,10 +1,10 @@
-# StackerNoon - Nostr Long-Form Content Platform
+# StackerNoon - Heather & Derek's Nostr Long-Form Content Platform
 
-This document describes the Nostr protocol usage in StackerNoon, a long-form content discovery platform.
+This document describes the Nostr protocol usage in StackerNoon, a long-form content discovery platform featuring articles from Heather and Derek.
 
 ## Kind 23: Long-Form Content
 
-StackerNoon aggregates and displays long-form articles from the Nostr network.
+StackerNoon displays long-form articles (Kind 23) from Heather and Derek about Bitcoin and Nostr.
 
 **Type**: Regular Event (Kind 23) as defined in NIP-23
 
@@ -63,17 +63,28 @@ The `content` field contains the full article text in Markdown format. This allo
 }
 ```
 
+### Authorized Publishers
+
+StackerNoon only displays articles from:
+- **Heather**: `9fce3aea32b35637838fb45b75be32595742e16bb3e4742cc82bb3d50f9087e6`
+- **Derek**: `4f1ebb82e7c7b631e234b02b87f6fdf87cf2c46d8eed17f23ca3b89e3f86ff5f`
+
 ### Querying Articles
 
 StackerNoon queries articles by:
 - Kind 23 filter
+- Author filter (Heather & Derek only)
 - Category using the `#t` filter
 
 ```typescript
-// Query all long-form articles
+// Query articles from Heather & Derek
 const articles = await nostr.query([
   {
     kinds: [23],
+    authors: [
+      '9fce3aea32b35637838fb45b75be32595742e16bb3e4742cc82bb3d50f9087e6',
+      '4f1ebb82e7c7b631e234b02b87f6fdf87cf2c46d8eed17f23ca3b89e3f86ff5f'
+    ],
     limit: 50,
   }
 ]);
@@ -82,6 +93,10 @@ const articles = await nostr.query([
 const bitcoinArticles = await nostr.query([
   {
     kinds: [23],
+    authors: [
+      '9fce3aea32b35637838fb45b75be32595742e16bb3e4742cc82bb3d50f9087e6',
+      '4f1ebb82e7c7b631e234b02b87f6fdf87cf2c46d8eed17f23ca3b89e3f86ff5f'
+    ],
     '#t': ['bitcoin'],
     limit: 50,
   }
