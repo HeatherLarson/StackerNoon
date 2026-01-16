@@ -50,16 +50,16 @@ export function BlogList() {
       {isLoading ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <Card key={i} className="border dark:bg-gray-900">
+            <Card key={i} className="border-gray-800 bg-gray-900">
               <div className="p-6 space-y-4">
-                <Skeleton className="h-40 w-full" />
-                <Skeleton className="h-4 w-20" />
-                <Skeleton className="h-6 w-full" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-40 w-full bg-gray-800" />
+                <Skeleton className="h-4 w-20 bg-gray-800" />
+                <Skeleton className="h-6 w-full bg-gray-800" />
+                <Skeleton className="h-4 w-full bg-gray-800" />
+                <Skeleton className="h-4 w-3/4 bg-gray-800" />
                 <div className="pt-4 flex justify-between">
-                  <Skeleton className="h-4 w-24" />
-                  <Skeleton className="h-4 w-20" />
+                  <Skeleton className="h-4 w-24 bg-gray-800" />
+                  <Skeleton className="h-4 w-20 bg-gray-800" />
                 </div>
               </div>
             </Card>
@@ -72,9 +72,9 @@ export function BlogList() {
           ))}
         </div>
       ) : (
-        <Card className="border-dashed">
+        <Card className="border-dashed border-gray-800 bg-gray-900">
           <CardContent className="py-16 text-center">
-            <p className="text-muted-foreground">
+            <p className="text-gray-500">
               {selectedCategory
                 ? `No articles found with #${selectedCategory}. Try a different category.`
                 : 'Loading long-form content from Nostr...'}

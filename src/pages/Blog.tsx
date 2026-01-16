@@ -12,7 +12,7 @@ const Blog = () => {
   });
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <div className="min-h-screen bg-gray-950">
       <BlogHeader />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <BlogList />

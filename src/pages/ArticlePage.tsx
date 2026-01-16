@@ -15,7 +15,7 @@ const ArticlePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <div className="min-h-screen bg-gray-950">
       <ArticleView slug={slug} />
     </div>
   );

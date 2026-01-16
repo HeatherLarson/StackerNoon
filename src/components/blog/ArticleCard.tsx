@@ -23,11 +23,11 @@ export function ArticleCard({ article, featured }: ArticleCardProps) {
   if (featured) {
     return (
       <Link to={`/article/${article.data.slug}`}>
-        <div className="group overflow-hidden rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-green-500 dark:hover:border-green-500 transition-all duration-300 hover:shadow-2xl cursor-pointer">
+        <div className="group overflow-hidden rounded-lg bg-gray-900 border-2 border-green-600 hover:border-green-400 transition-all duration-300 hover:shadow-2xl cursor-pointer shadow-lg shadow-green-600/20">
           <div className="grid md:grid-cols-2 gap-6 p-8">
             {/* Image */}
             {article.data.image && (
-              <div className="relative h-64 md:h-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800 order-2 md:order-1">
+              <div className="relative h-64 md:h-full overflow-hidden rounded-lg bg-gray-800 order-2 md:order-1">
                 <img
                   src={article.data.image}
                   alt={article.data.imageAlt || article.data.title}
@@ -47,7 +47,7 @@ export function ArticleCard({ article, featured }: ArticleCardProps) {
                   {article.data.categories.slice(0, 2).map((category) => (
                     <Badge
                       key={category}
-                      className="text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 uppercase"
+                      className="text-xs font-bold bg-green-600 text-white hover:bg-green-500 uppercase"
                     >
                       #{category}
                     </Badge>
@@ -56,12 +56,12 @@ export function ArticleCard({ article, featured }: ArticleCardProps) {
               )}
 
               {/* Title */}
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white line-clamp-3 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+              <h2 className="text-3xl md:text-4xl font-black text-white line-clamp-3 group-hover:text-green-400 transition-colors">
                 {article.data.title}
               </h2>
 
               {/* Summary */}
-              <p className="text-gray-600 dark:text-gray-400 line-clamp-2 text-lg">
+              <p className="text-gray-400 line-clamp-2 text-lg">
                 {article.data.summary}
               </p>
 
@@ -79,11 +79,11 @@ export function ArticleCard({ article, featured }: ArticleCardProps) {
                     />
                   )}
                   <div>
-                    <p className="font-bold text-gray-900 dark:text-white">{authorName}</p>
-                    <p className="text-gray-500 dark:text-gray-400">{timeAgo}</p>
+                    <p className="font-bold text-white">{authorName}</p>
+                    <p className="text-gray-500">{timeAgo}</p>
                   </div>
                 </div>
-                <div className="text-gray-500 dark:text-gray-400 font-medium">
+                <div className="text-gray-500 font-medium">
                   {readTime} min read
                 </div>
               </div>
@@ -96,10 +96,10 @@ export function ArticleCard({ article, featured }: ArticleCardProps) {
 
   return (
     <Link to={`/article/${article.data.slug}`}>
-      <div className="overflow-hidden rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-green-500 dark:hover:border-green-500 transition-all duration-300 hover:shadow-lg h-full group cursor-pointer">
+      <div className="overflow-hidden rounded-lg bg-gray-900 border border-gray-800 hover:border-green-600 transition-all duration-300 hover:shadow-lg h-full group cursor-pointer hover:shadow-green-600/20">
         {/* Featured Image */}
         {article.data.image && (
-          <div className="relative h-48 overflow-hidden bg-gray-200 dark:bg-gray-800">
+          <div className="relative h-48 overflow-hidden bg-gray-800">
             <img
               src={article.data.image}
               alt={article.data.imageAlt || article.data.title}
@@ -119,7 +119,7 @@ export function ArticleCard({ article, featured }: ArticleCardProps) {
               {article.data.categories.slice(0, 2).map((category) => (
                 <Badge
                   key={category}
-                  className="text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 uppercase"
+                  className="text-xs font-bold bg-green-600 text-white hover:bg-green-500 uppercase"
                 >
                   #{category}
                 </Badge>
@@ -128,17 +128,17 @@ export function ArticleCard({ article, featured }: ArticleCardProps) {
           )}
 
           {/* Title */}
-          <h3 className="text-xl font-black text-gray-900 dark:text-white line-clamp-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+          <h3 className="text-xl font-black text-white line-clamp-2 group-hover:text-green-400 transition-colors">
             {article.data.title}
           </h3>
 
           {/* Summary */}
-          <p className="text-gray-600 dark:text-gray-400 line-clamp-2 text-sm flex-1">
+          <p className="text-gray-400 line-clamp-2 text-sm flex-1">
             {article.data.summary}
           </p>
 
           {/* Footer */}
-          <div className="pt-3 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between text-xs mt-auto">
+          <div className="pt-3 border-t border-gray-800 flex items-center justify-between text-xs mt-auto">
             <div className="flex items-center gap-2">
               {authorImage && (
                 <img
@@ -150,9 +150,9 @@ export function ArticleCard({ article, featured }: ArticleCardProps) {
                   }}
                 />
               )}
-              <span className="font-bold text-gray-700 dark:text-gray-300">{authorName}</span>
+              <span className="font-bold text-gray-300">{authorName}</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 font-medium">
+            <div className="flex items-center gap-2 text-gray-500 font-medium">
               <span>{readTime} min read</span>
               <span>•</span>
               <span>{timeAgo}</span>
