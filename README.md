@@ -5,26 +5,28 @@ A Nostr-native long-form content platform inspired by HackerNoon. Browse and rea
 ## 🚀 Features
 
 ### Blog Functionality
-- **Private Publishing**: Only Heather and Derek can publish articles
+- **Open Publishing**: Any Nostr user can publish long-form articles
 - **Markdown Support**: Write rich articles with full Markdown formatting
-- **Categories**: Tag articles (building, thinking, product, podcast, updates)
+- **Categories**: Discover articles by tags (#bitcoin, #ethereum, #nostr, #defi, #nft, #web3, #crypto, etc.)
 - **Featured Images**: Add beautiful header images to articles
 - **Author Info**: Display Nostr profile information for each article
 - **Read Time Calculation**: Automatic reading time estimates
 - **Responsive Design**: Perfect on mobile, tablet, and desktop
 
 ### Design
-- **HackerNoon-Inspired**: Sleek, professional design aesthetic
+- **HackerNoon-Inspired**: Sleek, professional design with green accent colors
 - **Dark Mode Support**: Full dark/light theme support
 - **Smooth Interactions**: Hover effects, transitions, and smooth animations
 - **Loading States**: Skeleton loaders for better UX
 - **Category Filtering**: Filter articles by tags on the home page
+- **Featured Section**: Hero section showcasing the latest article
 
 ### Nostr Integration
-- **Kind 30251**: Custom addressable event for blog articles
+- **Kind 23**: NIP-23 standard for long-form content
 - **Cryptographically Signed**: All articles are signed with Nostr keys
-- **Nostr Network**: Articles are published to Nostr relays
-- **Access Control**: Enforced at the application level with pubkey validation
+- **Nostr Network**: Articles discovered from the entire Nostr ecosystem
+- **Author Discovery**: See Nostr profiles and metadata for every author
+- **Open Contribution**: Anyone with a Nostr key can publish
 
 ## 🏗️ Architecture
 
@@ -32,103 +34,75 @@ A Nostr-native long-form content platform inspired by HackerNoon. Browse and rea
 
 - `/` - **Blog Home**: Browse all articles with category filtering
 - `/article/:slug` - **Article View**: Read individual articles
-- `/publish` - **Publish Article**: Create new articles (restricted to authorized users)
 
 ### Key Files
 
 ```
 src/
 ├── components/blog/
-│   ├── BlogHeader.tsx          # Main blog header with publish button
+│   ├── BlogHeader.tsx          # HackerNoon-style header
 │   ├── BlogList.tsx            # Article grid with filtering
 │   ├── ArticleCard.tsx         # Individual article preview
-│   ├── ArticleView.tsx         # Full article display
-│   └── PublishArticleForm.tsx  # Article creation form
+│   └── ArticleView.tsx         # Full article display
 ├── hooks/
-│   ├── useBlogArticles.ts      # Query articles hook
-│   └── usePublishBlogArticle.ts # Publish article hook
+│   ├── useBlogArticles.ts      # Query long-form articles
+│   └── usePublishBlogArticle.ts # Publish articles
 └── pages/
     ├── Blog.tsx                # Blog home page
-    ├── ArticlePage.tsx         # Article view page
-    └── PublishPage.tsx         # Article creation page
+    └── ArticlePage.tsx         # Article view page
 ```
 
 ### Nostr Data Structure
 
-Articles are stored as Kind 30251 (addressable replaceable events):
+StackerNoon uses Kind 23 (NIP-23) events for long-form content:
 
 ```json
 {
-  "kind": 30251,
+  "kind": 23,
   "content": "Full article content in Markdown",
   "tags": [
     ["d", "article-slug"],
     ["title", "Article Title"],
     ["summary", "Brief summary"],
     ["image", "https://example.com/image.jpg"],
-    ["image_alt", "Alt text"],
-    ["t", "building"],
-    ["t", "thinking"],
+    ["t", "bitcoin"],
+    ["t", "nostr"],
     ["published_at", "1234567890"]
   ]
 }
 ```
 
-## 👥 Authorized Publishers
+## 🔗 Data Sources
 
-Only these Nostr accounts can publish articles:
+StackerNoon queries the Nostr network for:
+- **Kind 23 Events**: Long-form content articles
+- **Any Author**: Articles from all Nostr creators
+- **All Categories**: Filtered by #t tags
 
-### Heather Larson
-- **npub**: `npub1nl8r463jkdtr0qu0k3dht03jt9t59cttk0j8gtxg9wea2russlnq2zf9d0`
-- **Pubkey**: `9fce3aea32b35637838fb45b75be32595742e16bb3e4742cc82bb3d50f9087e6`
-- **Profile**: Yoga teacher, sobriety advocate, content creator on Nostr
+Articles are sorted by published_at timestamp (newest first).
 
-### Derek
-- **npub**: `npub18ams6ewn5aj2n3wt2qawzglx9mr4nzksxhvrdc4gzrecw7n5tvjqctp424`
-- **Pubkey**: `4f1ebb82e7c7b631e234b02b87f6fdf87cf2c46d8eed17f23ca3b89e3f86ff5f`
+## 📝 Article Categories
 
-## 🔐 Security & Access Control
+Popular categories include:
+- **bitcoin** - Bitcoin development and analysis
+- **ethereum** - Ethereum and EVM topics
+- **nostr** - Nostr protocol and clients
+- **defi** - Decentralized finance
+- **nft** - NFTs and digital collectibles
+- **web3** - Web3 and decentralization
+- **crypto** - General cryptocurrency topics
 
-- **Nostr Key-Based**: Authentication via Nostr NIP-07 extensions
-- **Pubkey Whitelist**: Only whitelisted pubkeys can publish
-- **Cryptographic Signatures**: All events are signed with private keys
-- **No Passwords**: Uses Nostr wallet/key management
-
-## 📝 Article Metadata
-
-Each article includes:
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `slug` | ✅ | URL-friendly identifier (lowercase, hyphens) |
-| `title` | ✅ | Article title (max 200 chars) |
-| `summary` | ✅ | Brief summary (max 500 chars) |
-| `content` | ✅ | Full article in Markdown |
-| `image` | ❌ | Featured image URL |
-| `image_alt` | ❌ | Image alt text for accessibility |
-| `categories` | ✅ | One or more tags (building, thinking, product, podcast, updates) |
-| `published_at` | ✅ | Unix timestamp (auto-set) |
-
-## 📚 Documentation
-
-- **[NIP.md](./NIP.md)** - Nostr protocol documentation for Kind 30251
-- **[docs/BLOG.md](./docs/BLOG.md)** - Comprehensive blog system documentation
-- **[docs/AI_CHAT.md](./docs/AI_CHAT.md)** - AI chat integration patterns
-- **[docs/NOSTR_COMMENTS.md](./docs/NOSTR_COMMENTS.md)** - Comment system patterns
-- **[docs/NOSTR_DIRECT_MESSAGES.md](./docs/NOSTR_DIRECT_MESSAGES.md)** - Messaging patterns
-- **[docs/NOSTR_INFINITE_SCROLL.md](./docs/NOSTR_INFINITE_SCROLL.md)** - Feed patterns
+Browse by any category tag present on the network.
 
 ## 🛠️ Technologies
 
 - **React 18**: Modern React with hooks
 - **TypeScript**: Type-safe JavaScript
-- **TailwindCSS**: Utility-first styling
+- **TailwindCSS**: Utility-first styling with HackerNoon green theme
 - **Vite**: Fast build tool
 - **Nostrify**: Nostr protocol library
 - **React Router**: Client-side routing
 - **TanStack Query**: Data fetching and caching
-- **React Hook Form**: Form management
-- **shadcn/ui**: Component library
 - **react-markdown**: Markdown rendering
 
 ## 🚀 Getting Started
@@ -154,36 +128,21 @@ npm run build
 # Output goes to dist/
 ```
 
-### Testing
-
-```bash
-# Run all tests
-npm run test
-
-# Includes: TypeScript checking, ESLint, Vitest
-```
-
 ## 📖 Usage
 
 ### Reading Articles
 
 1. Visit the home page (`/`)
-2. Browse the article grid
+2. Browse the article grid or use category filters
 3. Click on an article to read full content
-4. Use category filters to find specific topics
+4. Use category tags to discover related articles
 
 ### Publishing Articles
 
-1. Log in with Nostr (NIP-07 extension)
-2. If authorized, click "Write Article" button
-3. Fill in article details:
-   - Title
-   - Summary
-   - Content (Markdown)
-   - Featured image (optional)
-   - Categories
-4. Click "Publish Article"
-5. Article appears on Nostr network instantly
+1. Log in with your Nostr signer (Alby, nos2x, etc.)
+2. Use any Nostr client that supports Kind 23 to publish
+3. Your article will appear on StackerNoon automatically
+4. Tag with categories using #t tags
 
 ### Markdown Support
 
@@ -192,7 +151,6 @@ Articles support full Markdown:
 ```markdown
 # Headings
 ## Subheadings
-### Sub-subheadings
 
 **Bold** and *italic* text
 
@@ -206,26 +164,19 @@ Articles support full Markdown:
 
 > Blockquotes
 
-`inline code` and code blocks:
-
 \`\`\`javascript
-const hello = "world";
+const code = "highlighted";
 \`\`\`
 ```
 
-## 🎨 Customization
+## 🎨 Design
 
-### Colors
+StackerNoon uses the HackerNoon color scheme:
+- **Primary Green**: #1DB854 (hsl(145, 88%, 47%))
+- **Dark Green**: Accent and borders
+- **Neutral**: Grays for text and backgrounds
 
-The blog uses TailwindCSS with custom color scheme. Modify `tailwind.config.ts` to change colors.
-
-### Categories
-
-Edit the `CATEGORIES` constant in `src/components/blog/BlogList.tsx` and `src/components/blog/PublishArticleForm.tsx` to add new categories.
-
-### Authorized Publishers
-
-Edit `AUTHORIZED_PUBLISHERS` in `src/hooks/useBlogArticles.ts` to add/remove publishers.
+The design is responsive and works perfectly on mobile, tablet, and desktop devices.
 
 ## 🔗 Nostr Integration
 
@@ -235,56 +186,38 @@ Edit `AUTHORIZED_PUBLISHERS` in `src/hooks/useBlogArticles.ts` to add/remove pub
 import { useBlogArticles } from '@/hooks/useBlogArticles';
 
 function MyComponent() {
-  const { data: articles } = useBlogArticles('building');
+  const { data: articles } = useBlogArticles('bitcoin');
   // ...
 }
 ```
 
 ### Publishing Articles
 
-```typescript
-import { usePublishBlogArticle } from '@/hooks/usePublishBlogArticle';
-
-function MyComponent() {
-  const { mutate, isAuthorized } = usePublishBlogArticle();
-
-  const publish = () => {
-    mutate({
-      slug: 'my-article',
-      title: 'My Article',
-      summary: 'Summary text',
-      content: '# Markdown content',
-      image: 'https://example.com/image.jpg',
-      categories: ['building'],
-    });
-  };
-}
-```
+Use any Nostr client that supports NIP-23 to publish Kind 23 events.
 
 ## 📡 Nostr Relays
 
-The blog connects to multiple Nostr relays by default:
+StackerNoon connects to multiple Nostr relays by default:
 
 - `wss://relay.ditto.pub`
 - `wss://relay.nostr.band`
 - `wss://relay.damus.io`
 
-Articles are published to all configured relays for maximum availability.
+Articles are discovered from all configured relays.
 
 ## 🎯 Future Enhancements
 
 Possible features for future development:
 
-- [ ] Comments on articles (NIP-COMMENTS)
-- [ ] Related articles recommendations
-- [ ] Article search
-- [ ] Author-specific feeds
-- [ ] Article statistics
-- [ ] Social sharing with NIP-19
-- [ ] Draft support
-- [ ] Email subscriptions
-- [ ] Video support in articles
-- [ ] Code syntax highlighting themes
+- [ ] Search functionality across articles
+- [ ] Author following and personalized feeds
+- [ ] Commenting on articles
+- [ ] Article ratings and recommendations
+- [ ] Social sharing with NIP-19 identifiers
+- [ ] Advanced filtering options
+- [ ] Article statistics and engagement
+- [ ] Lightning tips for authors
+- [ ] Newsletter subscriptions
 
 ## 📄 License
 
@@ -292,6 +225,6 @@ This project is built with Shakespeare and uses the MIT License.
 
 ## 🎭 Built with Shakespeare
 
-This blog was created with [Shakespeare](https://shakespeare.diy) - an AI-powered website builder.
+This platform was created with [Shakespeare](https://shakespeare.diy) - an AI-powered website builder.
 
 [![Vibed with Shakespeare](https://img.shields.io/badge/Vibed%20with-Shakespeare-8B7AFF)](https://shakespeare.diy)

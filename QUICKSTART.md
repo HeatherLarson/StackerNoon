@@ -1,43 +1,51 @@
-# Derek & Me Chronicles - Quick Start Guide
+# StackerNoon - Quick Start Guide
 
-Welcome to your private blog! Here's how to get started.
+Welcome to StackerNoon, your Nostr-powered long-form content platform!
 
 ## 🎯 What is This?
 
-This is a private Nostr-powered blog where only you and Derek can publish articles. Everything you publish is cryptographically signed and stored on the Nostr network.
+StackerNoon is a long-form content discovery platform that pulls articles from creators across the Nostr network. It's inspired by HackerNoon but powered by the Nostr protocol - meaning all content is cryptographically signed and decentralized.
 
 ## 🚀 Getting Started
 
-### Step 1: Access the Blog
+### Step 1: Access StackerNoon
 
 1. Open the blog at your deployed URL (or `http://localhost:5173` if running locally)
-2. You'll see the home page with all published articles
+2. You'll see the home page with long-form articles from Nostr creators
+3. No login required to read articles!
 
-### Step 2: Log In
+### Step 2: Browse Articles
 
-1. Click the login button (usually in the top right)
-2. Choose your Nostr signer extension (Alby, nos2x, etc.)
-3. Approve the login request
-4. Once logged in as Derek or Heather, you'll see the "Write Article" button
+1. **Scroll the home page** to see featured and recent articles
+2. **Filter by category** - Click category badges (#bitcoin, #ethereum, #nostr, etc.)
+3. **Click an article** to read the full content
+4. **View author info** - Each article shows the author's Nostr profile
 
-### Step 3: Write Your First Article
+### Step 3: Read Articles
 
-1. Click the "Write Article" button
-2. Fill in the article details:
-   - **URL Slug**: A URL-safe name (e.g., `first-article`, `building-nostr`)
-   - **Title**: Your article title (max 200 characters)
-   - **Summary**: A brief description (max 500 characters)
-   - **Categories**: Choose what type of article this is (building, thinking, product, podcast, updates)
-   - **Content**: Write your full article in Markdown
-   - **Featured Image** (optional): Add a header image URL
-   - **Image Alt Text** (optional): Description for accessibility
+Each article shows:
+- Featured image
+- Title and summary
+- Author name and profile picture
+- Read time estimate
+- Publication date
+- Full markdown content when you click to read
 
-3. Click "Publish Article"
-4. Your article is published to Nostr immediately!
+### Step 4: Publish Your Own Article
+
+To publish an article:
+
+1. Click the "Write Now" button in the header (or log in first)
+2. Log in with your Nostr signer (Alby, nos2x, etc.)
+3. Use any Nostr client that supports Kind 23 (long-form content)
+4. Write your article in Markdown format
+5. Include tags using `#bitcoin`, `#ethereum`, etc.
+6. Publish to the Nostr network
+7. Your article will appear on StackerNoon automatically!
 
 ## 📝 Markdown Tips
 
-Use Markdown formatting in your articles:
+Write articles with Markdown formatting:
 
 ```markdown
 # Main Heading
@@ -66,71 +74,76 @@ const hello = "world";
 
 ## 🎨 Article Categories
 
-Choose categories that best describe your article:
+Discover articles by category:
 
-- **building**: Technical posts about what you're building
-- **thinking**: Thoughts, reflections, and philosophical posts
-- **product**: Product announcements and updates
-- **podcast**: Posts related to podcasting or Soapbox Sessions
-- **updates**: General updates and announcements
+- **bitcoin** - Bitcoin development and analysis
+- **ethereum** - Ethereum and EVM topics
+- **nostr** - Nostr protocol and clients
+- **defi** - Decentralized finance
+- **nft** - NFTs and digital collectibles
+- **web3** - Web3 and decentralization
+- **crypto** - General cryptocurrency topics
 
-You can choose multiple categories per article!
+Any #t tag from Nostr is searchable!
 
 ## 📖 Reading Articles
 
 1. **Browse all**: Start from the home page
 2. **Filter by category**: Click a category badge to see only articles in that category
-3. **Read**: Click an article to read the full content
+3. **Read**: Click an article to read the full content with markdown rendering
 4. **Share**: Copy the article URL to share with others
 
 ## 🔒 Security & Privacy
 
 - Your articles are **cryptographically signed** with your Nostr keys
-- Only **Derek and Heather's pubkeys** can publish articles
-- Articles are **permanently stored** on the Nostr network
+- **No central server** - content is stored on Nostr relays
 - Your **private key never leaves** your device/extension
+- Content is **permanent** and immutable on the Nostr network
 
 ## ⚡ Features at a Glance
 
 | Feature | Details |
 |---------|---------|
-| **Article Storage** | Nostr Kind 30251 (addressable events) |
+| **Content Format** | Nostr Kind 23 (NIP-23 long-form) |
 | **Markdown Support** | Full markdown with code highlighting |
 | **Featured Images** | Custom header images for each article |
 | **Author Info** | Shows Nostr profile info for each article |
 | **Read Time** | Automatically calculated for each article |
-| **Categories** | Filter articles by topics |
+| **Categories** | Filter articles by #t tags |
 | **Responsive** | Works on mobile, tablet, and desktop |
 | **Dark Mode** | Full light/dark theme support |
 
 ## 🐛 Troubleshooting
 
-### "You are not authorized to publish articles"
-- Make sure you're logged in with the correct Nostr account
-- Only Derek and Heather's accounts can publish
-
-### Article didn't publish
+### Articles not showing
 - Check your internet connection
-- Make sure your Nostr signer extension is working
-- Try again in a few moments
+- Make sure Nostr relays are connected
+- Try refreshing the page
+- Give the relays a moment to respond
 
-### Article slug error
-- Slugs must be lowercase with only letters, numbers, and hyphens
-- Examples: `good-article`, `my-post-2024`, `nostr-tips`
-- Not allowed: `My Article`, `article!`, `special@chars`
+### Can't publish article
+- Make sure you're logged in with a Nostr signer
+- Use a client that supports Kind 23 (long-form content)
+- Try publishing a simpler test article first
 
-### Featured image not showing
+### Article not appearing after publishing
+- Give the relays 30-60 seconds to sync
+- Refresh the page to see new articles
+- Check that your article has a title and content
+
+### Images not loading
 - Make sure the image URL is publicly accessible
-- Try a different hosting service (Blossom, Imgur, etc.)
+- Try a different image hosting service
+- Some image hosts may be blocked by CORS
 
 ## 📚 More Information
 
-- **Full Documentation**: See `docs/BLOG.md` for technical details
-- **Nostr Protocol**: See `NIP.md` for the article schema
-- **Project Details**: See `README.md` for the full feature list
+- **Full Documentation**: See `README.md` for complete features
+- **Nostr Protocol**: See `NIP.md` for the Kind 23 spec
+- **Architecture**: See `ARCHITECTURE.md` for system design
 
-## 🎉 Start Writing!
+## 🎉 Start Exploring!
 
-Your chronicles are waiting to be told. Click "Write Article" and start sharing what you're building and thinking about!
+StackerNoon showcases the best long-form content from Nostr creators. Start reading, discover amazing content, and share your own stories!
 
-Happy writing! ✍️
+Happy reading! 📚

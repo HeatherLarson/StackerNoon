@@ -1,21 +1,21 @@
-# Derek & Me Chronicles - Complete Project Index
+# StackerNoon - Complete Project Index
 
 ## 📋 Quick Navigation
 
 ### For First-Time Users
-👉 Start here: **[QUICKSTART.md](./QUICKSTART.md)** - Step-by-step guide to publish your first article
+👉 Start here: **[QUICKSTART.md](./QUICKSTART.md)** - Step-by-step guide to read and publish articles
 
-### For Project Overview  
+### For Project Overview
 👉 Read: **[README.md](./README.md)** - Complete feature list and getting started guide
 
 ### For Technical Details
 👉 Review: **[ARCHITECTURE.md](./ARCHITECTURE.md)** - System design and data flow diagrams
 
 ### For Blog System Docs
-👉 Explore: **[docs/BLOG.md](./docs/BLOG.md)** - Technical documentation for the blog system
+👉 Explore: **[docs/BLOG.md](./docs/BLOG.md)** - Technical documentation for the platform
 
 ### For Protocol Details
-👉 Check: **[NIP.md](./NIP.md)** - Nostr protocol documentation for Kind 30251
+👉 Check: **[NIP.md](./NIP.md)** - Nostr protocol documentation for Kind 23 (NIP-23)
 
 ---
 
@@ -149,32 +149,30 @@ Visit / → Click category badge → See filtered articles
 
 ---
 
-## 🔐 Authorized Publishers
+## 🔐 Publishing
 
-**Only these two accounts can publish:**
-
-| Name | npub | Status |
-|------|------|--------|
-| Heather | `npub1nl8r463jkdtr0qu0k3dht03jt9t59cttk0j8gtxg9wea2russlnq2zf9d0` | ✅ Active |
-| Derek | `npub18ams6ewn5aj2n3wt2qawzglx9mr4nzksxhvrdc4gzrecw7n5tvjqctp424` | ✅ Active |
-
-To modify, edit `AUTHORIZED_PUBLISHERS` in `src/hooks/useBlogArticles.ts`.
+**Anyone can publish** articles to StackerNoon using their Nostr key! Just use any Nostr client that supports Kind 23 (long-form content) and your article will appear on the platform.
 
 ---
 
 ## 📊 Categories Available
 
+Popular categories include:
+
 | Category | Use Case |
 |----------|----------|
-| **building** | Technical development posts |
-| **thinking** | Thoughts and reflections |
-| **product** | Product announcements |
-| **podcast** | Podcast-related content |
-| **updates** | General updates |
+| **bitcoin** | Bitcoin development and analysis |
+| **ethereum** | Ethereum and EVM topics |
+| **nostr** | Nostr protocol and clients |
+| **defi** | Decentralized finance |
+| **nft** | NFTs and digital collectibles |
+| **web3** | Web3 and decentralization |
+| **crypto** | General cryptocurrency topics |
 
-To add/modify, edit `CATEGORIES` in:
+To modify the default categories, edit `CATEGORIES` in:
 - `src/components/blog/BlogList.tsx`
-- `src/components/blog/PublishArticleForm.tsx`
+
+Any #t tag on Nostr is filterable!
 
 ---
 
@@ -183,19 +181,17 @@ To add/modify, edit `CATEGORIES` in:
 ### Change Blog Title
 File: `src/components/blog/BlogHeader.tsx`
 ```jsx
-<h1>Your New Title</h1>
+<div className="text-2xl font-black">YOUR TITLE HERE</div>
 ```
 
-### Add/Remove Categories
-Files: 
-- `src/components/blog/BlogList.tsx`
-- `src/components/blog/PublishArticleForm.tsx`
+### Change Default Categories
+File: `src/components/blog/BlogList.tsx`
+```typescript
+const CATEGORIES = ['bitcoin', 'ethereum', 'nostr', 'defi', 'nft', 'web3', 'crypto'];
+```
 
 ### Change Colors
-File: `src/index.css` - modify CSS custom properties
-
-### Add Publishers
-File: `src/hooks/useBlogArticles.ts` - update `AUTHORIZED_PUBLISHERS`
+File: `src/index.css` - modify CSS custom properties (currently HackerNoon green)
 
 ### Change Relays
 File: `src/App.tsx` - modify `defaultConfig.relayMetadata.relays`
@@ -370,7 +366,7 @@ This project was created with [Shakespeare.diy](https://shakespeare.diy)
 
 ---
 
-**Last Updated**: January 16, 2026  
-**Status**: ✅ Production Ready  
-**Version**: 1.0.0  
+**Last Updated**: January 16, 2026
+**Status**: ✅ Production Ready
+**Version**: 1.0.0
 **Maintainers**: Heather Larson & Derek
