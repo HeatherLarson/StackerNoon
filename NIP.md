@@ -1,50 +1,41 @@
-# Derek and Me Chronicles - Custom Nostr Events
+# StackerNoon - Nostr Long-Form Content Platform
 
-This document defines custom Nostr event kinds used in the Derek and Me Chronicles application.
+This document describes the Nostr protocol usage in StackerNoon, a long-form content discovery platform.
 
-## Kind 30251: Blog Articles
+## Kind 23: Long-Form Content
 
-Articles and chronicles for the Derek and Me Chronicles blog.
+StackerNoon aggregates and displays long-form articles from the Nostr network.
 
-**Type**: Addressable Replaceable Event (Kind 30251)
+**Type**: Regular Event (Kind 23) as defined in NIP-23
 
-**Purpose**: Store and retrieve blog articles authored by allowed contributors.
+**Purpose**: Display long-form content from creators across the Nostr network.
 
 ### Event Structure
 
 ```json
 {
-  "kind": 30251,
+  "kind": 23,
   "content": "Full article content in markdown format",
   "tags": [
     ["d", "article-slug"],
     ["title", "Article Title"],
     ["summary", "Brief summary of the article"],
     ["image", "https://example.com/image.jpg"],
-    ["t", "category-tag"],
+    ["t", "bitcoin"],
+    ["t", "nostr"],
     ["published_at", "1234567890"]
   ]
 }
 ```
 
-### Required Tags
+### Standard Tags (NIP-23)
 
 - `d`: Unique identifier (slug) for the article - must be URL-safe lowercase with hyphens
-- `title`: Article title (required, max 200 characters)
-- `summary`: Brief summary of the article (required, max 500 characters)
+- `title`: Article title (required)
+- `summary`: Brief summary of the article (optional, extracted from content if not provided)
 - `published_at`: Unix timestamp when the article was published
-
-### Optional Tags
-
-- `image`: Featured image URL for the article
-- `t`: Category tags (can have multiple) - commonly used: "building", "thinking", "product", "podcast", "updates"
-- `image_alt`: Alt text for the featured image
-
-### Access Control
-
-Articles can only be published by these pubkeys (configured in the application):
-- Heather Larson: `9fce3aea32b35637838fb45b75be32595742e16bb3e4742cc82bb3d50f9087e6`
-- Derek: `4f1ebb82e7c7b631e234b02b87f6fdf87cf2c46d8eed17f23ca3b89e3f86ff5f` (decoded from npub18ams6ewn5aj2n3wt2qawzglx9mr4nzksxhvrdc4gzrecw7n5tvjqctp424)
+- `t`: Category tags (can have multiple) - examples: "bitcoin", "ethereum", "nostr", "defi", "nft", "web3", "crypto"
+- `image`: Featured image URL for the article (optional)
 
 ### Content Format
 
@@ -58,14 +49,15 @@ The `content` field contains the full article text in Markdown format. This allo
 
 ```json
 {
-  "kind": 30251,
-  "content": "# Building with Nostr\n\nThis week we explored...\n\n## Key Takeaways\n- Point 1\n- Point 2",
+  "kind": 23,
+  "content": "# Understanding Bitcoin\n\nBitcoin is a peer-to-peer electronic cash system...\n\n## How it Works\n- Decentralized network\n- Proof of work...",
   "tags": [
-    ["d", "building-with-nostr"],
-    ["title", "Building with Nostr"],
-    ["summary", "Weekly chronicles of our Nostr development journey"],
-    ["image", "https://image.example.com/building.jpg"],
-    ["t", "building"],
+    ["d", "understanding-bitcoin"],
+    ["title", "Understanding Bitcoin"],
+    ["summary", "A comprehensive guide to Bitcoin fundamentals"],
+    ["image", "https://image.example.com/bitcoin.jpg"],
+    ["t", "bitcoin"],
+    ["t", "cryptocurrency"],
     ["published_at", "1705000000"]
   ]
 }
@@ -73,25 +65,29 @@ The `content` field contains the full article text in Markdown format. This allo
 
 ### Querying Articles
 
-Articles can be queried by:
-- Author pubkey + kind
+StackerNoon queries articles by:
+- Kind 23 filter
 - Category using the `#t` filter
-- Date range using the timestamp
 
 ```typescript
-// Query all articles by an author
+// Query all long-form articles
 const articles = await nostr.query([
   {
-    kinds: [30251],
-    authors: [pubkey],
+    kinds: [23],
+    limit: 50,
   }
 ]);
 
 // Query articles by category
-const buildingArticles = await nostr.query([
+const bitcoinArticles = await nostr.query([
   {
-    kinds: [30251],
-    '#t': ['building'],
+    kinds: [23],
+    '#t': ['bitcoin'],
+    limit: 50,
   }
 ]);
 ```
+
+### NIP-23 Reference
+
+For full NIP-23 specification, see: https://github.com/nostr-protocol/nips/blob/master/23.md

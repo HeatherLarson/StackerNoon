@@ -1,49 +1,100 @@
 import { useCurrentUser } from '@/hooks/useCurrentUser';
-import { usePublishBlogArticle } from '@/hooks/usePublishBlogArticle';
 import { Button } from '@/components/ui/button';
 import { LoginArea } from '@/components/auth/LoginArea';
-import { PenTool } from 'lucide-react';
+import { Search, Bell, Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function BlogHeader() {
   const { user } = useCurrentUser();
-  const { isAuthorized } = usePublishBlogArticle();
 
   return (
-    <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col gap-4">
-          {/* Header Content */}
-          <div className="space-y-2">
-            <h1 className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Derek & Me Chronicles
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              Chronicles of things we're building and talking about
-            </p>
+    <>
+      {/* Top Bar - Search and Auth */}
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+          {/* Search Bar */}
+          <div className="flex-1 max-w-xs">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Discover Anything"
+                className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
+              />
+              <Search className="absolute right-3 top-2.5 w-4 h-4 text-gray-400" />
+            </div>
           </div>
 
-          {/* Auth Section */}
-          <div className="flex items-center justify-between pt-4">
-            <div className="flex items-center gap-4">
-              {isAuthorized && user && (
-                <>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {user.metadata?.name || 'Anonymous'} (Editor)
-                  </div>
-                  <Link to="/publish">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white gap-2">
-                      <PenTool className="w-4 h-4" />
-                      Write Article
-                    </Button>
-                  </Link>
-                </>
-              )}
-            </div>
-            {!user && <LoginArea className="max-w-xs" />}
+          {/* Right Side - Auth Buttons */}
+          <div className="ml-4 flex items-center gap-3">
+            {user ? (
+              <>
+                <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+                  <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                </button>
+                <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+                  <Menu className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                </button>
+              </>
+            ) : (
+              <div className="flex gap-2">
+                <Button variant="ghost" className="text-sm font-medium">
+                  Login
+                </Button>
+                <Button variant="ghost" className="text-sm font-medium">
+                  Signup
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </header>
+
+      {/* Main Header - Logo and Navigation */}
+      <div className="bg-gradient-to-r from-green-600 to-green-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between mb-6">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2">
+              <div className="text-3xl font-black">🤖</div>
+              <div className="text-2xl font-black">STACKERNOON</div>
+            </Link>
+
+            {/* Auth */}
+            {!user ? (
+              <LoginArea className="max-w-xs" />
+            ) : (
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-medium">{user.metadata?.name || 'User'}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Navigation Menu */}
+          <div className="flex items-center gap-6 text-sm font-bold uppercase tracking-wide">
+            <Link to="/" className="hover:opacity-80 transition">
+              READ
+            </Link>
+            <a href="#" className="hover:opacity-80 transition">
+              TOP BLOGS
+            </a>
+            <button className="hover:opacity-80 transition">
+              WRITE NOW
+            </button>
+            <a href="#" className="hover:opacity-80 transition">
+              BUSINESS BLOGGING
+            </a>
+            <a href="#" className="hover:opacity-80 transition">
+              COURSES
+            </a>
+            <a href="#" className="hover:opacity-80 transition">
+              ABOUT
+            </a>
+            <a href="#" className="hover:opacity-80 transition">
+              MORE +
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

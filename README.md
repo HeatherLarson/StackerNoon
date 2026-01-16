@@ -1,6 +1,6 @@
-# Derek & Me Chronicles
+# StackerNoon
 
-A private, Nostr-powered blog where Derek and Heather chronicle things they're building and talking about. Built with React, TailwindCSS, and Nostr protocol integration.
+A Nostr-native long-form content platform inspired by HackerNoon. Browse and read long-form articles (Kind 23 events) from creators across the Nostr network. Built with React, TailwindCSS, and Nostr protocol integration.
 
 ## 🚀 Features
 

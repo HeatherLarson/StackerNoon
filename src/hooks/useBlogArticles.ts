@@ -2,14 +2,8 @@ import { useNostr } from '@nostrify/react';
 import { useQuery } from '@tanstack/react-query';
 import type { NostrEvent } from '@nostrify/nostrify';
 
-// Kind 30251: Blog Articles
-const BLOG_ARTICLE_KIND = 30251;
-
-// Authorized publishers
-export const AUTHORIZED_PUBLISHERS = [
-  '9fce3aea32b35637838fb45b75be32595742e16bb3e4742cc82bb3d50f9087e6', // Heather
-  '4f1ebb82e7c7b631e234b02b87f6fdf87cf2c46d8eed17f23ca3b89e3f86ff5f', // Derek (npub18ams6ewn5aj2n3wt2qawzglx9mr4nzksxhvrdc4gzrecw7n5tvjqctp424)
-];
+// Kind 23: Long-form content (NIP-23)
+const LONG_FORM_KIND = 23;
 
 export interface BlogArticle extends NostrEvent {
   data: {
@@ -33,7 +27,8 @@ function parseArticleEvent(event: NostrEvent): BlogArticle | null {
     const publishedAt = parseInt(event.tags.find(([name]) => name === 'published_at')?.[1] || '0');
     const categories = event.tags.filter(([name]) => name === 't').map(([, value]) => value);
 
-    if (!d || !title || !summary) {
+    // For Kind 23, title and summary are required
+    if (!d || !title) {
       return null;
     }
 
@@ -42,7 +37,7 @@ function parseArticleEvent(event: NostrEvent): BlogArticle | null {
       data: {
         slug: d,
         title,
-        summary,
+        summary: summary || event.content.substring(0, 200),
         image,
         imageAlt,
         categories,
@@ -58,14 +53,13 @@ export function useBlogArticles(category?: string) {
   const { nostr } = useNostr();
 
   return useQuery({
-    queryKey: ['blog-articles', category],
+    queryKey: ['long-form-articles', category],
     queryFn: async (c) => {
-      const signal = AbortSignal.any([c.signal, AbortSignal.timeout(5000)]);
+      const signal = AbortSignal.any([c.signal, AbortSignal.timeout(8000)]);
 
       const filter: Record<string, unknown> = {
-        kinds: [BLOG_ARTICLE_KIND],
-        authors: AUTHORIZED_PUBLISHERS,
-        limit: 100,
+        kinds: [LONG_FORM_KIND],
+        limit: 50,
       };
 
       if (category) {
@@ -90,15 +84,14 @@ export function useBlogArticle(slug: string) {
   const { nostr } = useNostr();
 
   return useQuery({
-    queryKey: ['blog-article', slug],
+    queryKey: ['long-form-article', slug],
     queryFn: async (c) => {
-      const signal = AbortSignal.any([c.signal, AbortSignal.timeout(5000)]);
+      const signal = AbortSignal.any([c.signal, AbortSignal.timeout(8000)]);
 
       const events = await nostr.query(
         [
           {
-            kinds: [BLOG_ARTICLE_KIND],
-            authors: AUTHORIZED_PUBLISHERS,
+            kinds: [LONG_FORM_KIND],
             '#d': [slug],
             limit: 1,
           },

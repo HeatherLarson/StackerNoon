@@ -1,8 +1,8 @@
 import { useCurrentUser } from './useCurrentUser';
 import { useNostrPublish } from './useNostrPublish';
-import { AUTHORIZED_PUBLISHERS } from './useBlogArticles';
 
-const BLOG_ARTICLE_KIND = 30251;
+// Kind 23: Long-form content (NIP-23)
+const LONG_FORM_KIND = 23;
 
 export interface PublishArticleInput {
   slug: string;
@@ -21,10 +21,6 @@ export function usePublishBlogArticle() {
   const publish = (input: PublishArticleInput) => {
     if (!user) {
       throw new Error('User must be logged in to publish articles');
-    }
-
-    if (!AUTHORIZED_PUBLISHERS.includes(user.pubkey)) {
-      throw new Error('You are not authorized to publish articles to this blog');
     }
 
     const tags: string[][] = [
@@ -49,7 +45,7 @@ export function usePublishBlogArticle() {
     }
 
     mutate({
-      kind: BLOG_ARTICLE_KIND,
+      kind: LONG_FORM_KIND,
       content: input.content,
       tags,
     });
@@ -58,6 +54,6 @@ export function usePublishBlogArticle() {
   return {
     ...rest,
     mutate: publish,
-    isAuthorized: user ? AUTHORIZED_PUBLISHERS.includes(user.pubkey) : false,
+    isAuthorized: !!user,
   };
 }

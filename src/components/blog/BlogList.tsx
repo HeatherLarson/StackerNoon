@@ -5,35 +5,42 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 
-const CATEGORIES = ['building', 'thinking', 'product', 'podcast', 'updates'];
+const CATEGORIES = ['bitcoin', 'ethereum', 'nostr', 'defi', 'nft', 'web3', 'crypto'];
 
 export function BlogList() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
   const { data: articles, isLoading } = useBlogArticles(selectedCategory);
 
+  const featuredArticle = articles?.[0];
+  const regularArticles = articles?.slice(1) || [];
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
+      {/* Featured Section - Full Width */}
+      {isLoading ? (
+        <Skeleton className="h-96 w-full rounded-lg" />
+      ) : featuredArticle ? (
+        <ArticleCard article={featuredArticle} featured />
+      ) : null}
+
       {/* Category Filter */}
-      <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wide">
-          Filter by category
-        </h3>
+      <div className="space-y-4">
         <div className="flex flex-wrap gap-2">
           <Badge
             variant={selectedCategory === undefined ? 'default' : 'outline'}
-            className="cursor-pointer transition-all hover:border-blue-500"
+            className="cursor-pointer transition-all text-xs font-bold"
             onClick={() => setSelectedCategory(undefined)}
           >
-            All Articles
+            ALL ARTICLES
           </Badge>
           {CATEGORIES.map((category) => (
             <Badge
               key={category}
               variant={selectedCategory === category ? 'default' : 'outline'}
-              className="cursor-pointer transition-all hover:border-blue-500"
+              className="cursor-pointer transition-all text-xs font-bold"
               onClick={() => setSelectedCategory(category)}
             >
-              {category}
+              #{category.toUpperCase()}
             </Badge>
           ))}
         </div>
@@ -43,10 +50,11 @@ export function BlogList() {
       {isLoading ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <Card key={i} className="border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+            <Card key={i} className="border dark:bg-gray-900">
               <div className="p-6 space-y-4">
+                <Skeleton className="h-40 w-full" />
                 <Skeleton className="h-4 w-20" />
-                <Skeleton className="h-8 w-full" />
+                <Skeleton className="h-6 w-full" />
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-3/4" />
                 <div className="pt-4 flex justify-between">
@@ -57,19 +65,19 @@ export function BlogList() {
             </Card>
           ))}
         </div>
-      ) : articles && articles.length > 0 ? (
+      ) : regularArticles && regularArticles.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article) => (
+          {regularArticles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
         </div>
       ) : (
-        <Card className="border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <Card className="border-dashed">
           <CardContent className="py-16 text-center">
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-muted-foreground">
               {selectedCategory
-                ? `No articles found in the "${selectedCategory}" category. Try selecting a different category or view all articles.`
-                : 'No articles published yet. Check back soon for new chronicles!'}
+                ? `No articles found with #${selectedCategory}. Try a different category.`
+                : 'Loading long-form content from Nostr...'}
             </p>
           </CardContent>
         </Card>

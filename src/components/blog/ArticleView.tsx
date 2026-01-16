@@ -125,16 +125,16 @@ export function ArticleView({ slug }: ArticleViewProps) {
         </div>
 
         {/* Content */}
-        <div className="prose prose-invert dark:prose-invert max-w-none">
+        <div className="prose dark:prose-invert max-w-none">
           <ReactMarkdown
             components={{
               h1: ({ children }) => (
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
+                <h1 className="text-4xl font-black text-gray-900 dark:text-white mt-8 mb-4">
                   {children}
                 </h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
+                <h2 className="text-3xl font-black text-gray-900 dark:text-white mt-8 mb-4 border-l-4 border-green-600 pl-4">
                   {children}
                 </h2>
               ),
@@ -144,14 +144,14 @@ export function ArticleView({ slug }: ArticleViewProps) {
                 </h3>
               ),
               p: ({ children }) => (
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4 text-lg">
                   {children}
                 </p>
               ),
               a: ({ href, children }) => (
                 <a
                   href={href}
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-green-600 dark:text-green-400 hover:underline font-medium"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -164,12 +164,12 @@ export function ArticleView({ slug }: ArticleViewProps) {
                 </code>
               ),
               pre: ({ children }) => (
-                <pre className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4">
+                <pre className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4 border border-gray-700">
                   {children}
                 </pre>
               ),
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-blue-600 dark:border-blue-400 pl-4 italic text-gray-600 dark:text-gray-400 my-4">
+                <blockquote className="border-l-4 border-green-600 dark:border-green-400 pl-4 italic text-gray-600 dark:text-gray-400 my-4 bg-gray-50 dark:bg-gray-900 py-3 pr-4 rounded">
                   {children}
                 </blockquote>
               ),
@@ -182,6 +182,16 @@ export function ArticleView({ slug }: ArticleViewProps) {
                 <ol className="list-decimal list-inside text-gray-700 dark:text-gray-300 space-y-2 mb-4">
                   {children}
                 </ol>
+              ),
+              img: ({ src, alt }) => (
+                <img
+                  src={src}
+                  alt={alt}
+                  className="w-full rounded-lg my-6 border border-gray-200 dark:border-gray-800"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
+                />
               ),
             }}
           >
