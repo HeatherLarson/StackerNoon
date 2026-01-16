@@ -109,9 +109,9 @@ No mock data - everything is live from Nostr!
 ================================================================================
 
 StackerNoon is Bitcoin and Nostr focused:
-  • bitcoin   - Bitcoin development, analysis, adoption
-  • nostr     - Nostr protocol, clients, applications
-  • building  - Building on Bitcoin and Nostr
+  • bitcoin     - Bitcoin development, analysis, adoption
+  • nostr       - Nostr protocol, clients, applications
+  • vibecoding  - Building on Bitcoin and Nostr
 
 To customize, edit CATEGORIES in src/components/blog/BlogList.tsx
 

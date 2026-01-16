@@ -158,9 +158,9 @@ For Developers:
 
                        📊 DEFAULT CATEGORIES
 
-bitcoin    - Bitcoin development, analysis, adoption
-nostr      - Nostr protocol, clients, applications
-building   - Building on Bitcoin and Nostr
+bitcoin     - Bitcoin development, analysis, adoption
+nostr       - Nostr protocol, clients, applications
+vibecoding  - Building on Bitcoin and Nostr
 
 Customize in: src/components/blog/BlogList.tsx
 

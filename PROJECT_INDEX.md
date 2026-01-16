@@ -163,7 +163,7 @@ StackerNoon is Bitcoin and Nostr focused:
 |----------|----------|
 | **bitcoin** | Bitcoin development, analysis, adoption |
 | **nostr** | Nostr protocol and clients |
-| **building** | Building on Bitcoin and Nostr |
+| **vibecoding** | Building on Bitcoin and Nostr |
 
 To modify the default categories, edit `CATEGORIES` in:
 - `src/components/blog/BlogList.tsx`

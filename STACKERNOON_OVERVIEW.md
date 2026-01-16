@@ -97,7 +97,7 @@ StackerNoon focuses on Bitcoin and Nostr only (customizable in `src/components/b
 ```
 bitcoin    - Bitcoin development, analysis, adoption
 nostr      - Nostr protocol, clients, applications
-building   - Building on Bitcoin and Nostr
+vibecoding - Building on Bitcoin and Nostr
 ```
 
 ## 🎯 Key Features

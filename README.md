@@ -86,7 +86,7 @@ Articles are sorted by published_at timestamp (newest first).
 StackerNoon focuses on Bitcoin and Nostr:
 - **bitcoin** - Bitcoin development, analysis, and adoption
 - **nostr** - Nostr protocol, clients, and applications
-- **building** - Building on Bitcoin and Nostr
+- **vibecoding** - Building on Bitcoin and Nostr
 
 Browse by category tags to discover related content.
 
