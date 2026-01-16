@@ -53,15 +53,15 @@ Your HackerNoon-inspired Nostr long-form content platform is ready!
 
 1. START HERE:
    👉 Read: QUICKSTART.md (5 minutes)
-   
+
 2. UNDERSTAND THE PROJECT:
    👉 Read: README.md (10 minutes)
-   
+
 3. READ ARTICLES:
    👉 Browse the home page
    👉 Filter by category
    👉 Click to read full articles
-   
+
 4. PUBLISH YOUR OWN:
    👉 Log in with Nostr signer
    👉 Use Kind 23 client (any Nostr app)
@@ -108,14 +108,10 @@ No mock data - everything is live from Nostr!
                           📝 ARTICLE CATEGORIES
 ================================================================================
 
-Default categories (easily customizable):
-  • bitcoin   - Bitcoin development and analysis
-  • ethereum  - Ethereum and EVM topics
-  • nostr     - Nostr protocol and clients
-  • defi      - Decentralized finance
-  • nft       - NFTs and digital collectibles
-  • web3      - Web3 and decentralization
-  • crypto    - General cryptocurrency topics
+StackerNoon is Bitcoin and Nostr focused:
+  • bitcoin   - Bitcoin development, analysis, adoption
+  • nostr     - Nostr protocol, clients, applications
+  • building  - Building on Bitcoin and Nostr
 
 To customize, edit CATEGORIES in src/components/blog/BlogList.tsx
 

@@ -92,19 +92,13 @@ Render ArticleCard components
 
 ## 📊 Categories
 
-Default categories (customizable in `src/components/blog/BlogList.tsx`):
+StackerNoon focuses on Bitcoin and Nostr only (customizable in `src/components/blog/BlogList.tsx`):
 
 ```
-bitcoin    - Bitcoin development, analysis
-ethereum   - Ethereum, EVM topics
-nostr      - Nostr protocol, clients
-defi       - Decentralized finance
-nft        - NFTs, digital collectibles
-web3       - Web3, decentralization
-crypto     - General cryptocurrency
+bitcoin    - Bitcoin development, analysis, adoption
+nostr      - Nostr protocol, clients, applications
+building   - Building on Bitcoin and Nostr
 ```
-
-Any #t tag on Nostr is filterable!
 
 ## 🎯 Key Features
 

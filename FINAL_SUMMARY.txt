@@ -158,13 +158,9 @@ For Developers:
 
                        📊 DEFAULT CATEGORIES
 
-bitcoin    - Bitcoin development and analysis
-ethereum   - Ethereum and EVM topics
-nostr      - Nostr protocol and clients
-defi       - Decentralized finance
-nft        - NFTs and digital collectibles
-web3       - Web3 and decentralization
-crypto     - General cryptocurrency topics
+bitcoin    - Bitcoin development, analysis, adoption
+nostr      - Nostr protocol, clients, applications
+building   - Building on Bitcoin and Nostr
 
 Customize in: src/components/blog/BlogList.tsx
 
@@ -310,10 +306,10 @@ Next Steps:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
               StackerNoon: Discover Nostr's Best Long-Form Content
-              
+
             Decentralized • Open • Cryptographically Verified
                     Powered by Nostr • Built with React
-                              
+
                           Made with Shakespeare.diy
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

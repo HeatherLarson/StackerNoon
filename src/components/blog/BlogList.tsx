@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 
-const CATEGORIES = ['bitcoin', 'ethereum', 'nostr', 'defi', 'nft', 'web3', 'crypto'];
+const CATEGORIES = ['bitcoin', 'nostr', 'building'];
 
 export function BlogList() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();

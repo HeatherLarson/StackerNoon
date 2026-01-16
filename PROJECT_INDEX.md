@@ -157,22 +157,16 @@ Visit / → Click category badge → See filtered articles
 
 ## 📊 Categories Available
 
-Popular categories include:
+StackerNoon is Bitcoin and Nostr focused:
 
 | Category | Use Case |
 |----------|----------|
-| **bitcoin** | Bitcoin development and analysis |
-| **ethereum** | Ethereum and EVM topics |
+| **bitcoin** | Bitcoin development, analysis, adoption |
 | **nostr** | Nostr protocol and clients |
-| **defi** | Decentralized finance |
-| **nft** | NFTs and digital collectibles |
-| **web3** | Web3 and decentralization |
-| **crypto** | General cryptocurrency topics |
+| **building** | Building on Bitcoin and Nostr |
 
 To modify the default categories, edit `CATEGORIES` in:
 - `src/components/blog/BlogList.tsx`
-
-Any #t tag on Nostr is filterable!
 
 ---
 

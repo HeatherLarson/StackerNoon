@@ -74,17 +74,13 @@ const hello = "world";
 
 ## 🎨 Article Categories
 
-Discover articles by category:
+StackerNoon focuses on Bitcoin and Nostr:
 
-- **bitcoin** - Bitcoin development and analysis
-- **ethereum** - Ethereum and EVM topics
-- **nostr** - Nostr protocol and clients
-- **defi** - Decentralized finance
-- **nft** - NFTs and digital collectibles
-- **web3** - Web3 and decentralization
-- **crypto** - General cryptocurrency topics
+- **bitcoin** - Bitcoin development, analysis, and adoption
+- **nostr** - Nostr protocol, clients, and applications
+- **building** - Building on Bitcoin and Nostr
 
-Any #t tag from Nostr is searchable!
+Filter articles by these categories to find what matters.
 
 ## 📖 Reading Articles
 

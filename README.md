@@ -83,16 +83,12 @@ Articles are sorted by published_at timestamp (newest first).
 
 ## 📝 Article Categories
 
-Popular categories include:
-- **bitcoin** - Bitcoin development and analysis
-- **ethereum** - Ethereum and EVM topics
-- **nostr** - Nostr protocol and clients
-- **defi** - Decentralized finance
-- **nft** - NFTs and digital collectibles
-- **web3** - Web3 and decentralization
-- **crypto** - General cryptocurrency topics
+StackerNoon focuses on Bitcoin and Nostr:
+- **bitcoin** - Bitcoin development, analysis, and adoption
+- **nostr** - Nostr protocol, clients, and applications
+- **building** - Building on Bitcoin and Nostr
 
-Browse by any category tag present on the network.
+Browse by category tags to discover related content.
 
 ## 🛠️ Technologies
 
